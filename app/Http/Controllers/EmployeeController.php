@@ -12,10 +12,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = employee::all();
+        $employees = employee::all(); // Shudhu active data
         return view('employees.index', compact('employees'));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -58,12 +57,38 @@ class EmployeeController extends Controller
         return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(employee $employee)
-    {
-        $employee->delete();
-        return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
-    }
+   // SoftDeleted method: Shudhu soft delete kora data dekhabe
+   public function softDeleted()
+   {
+       $employees = Employee::onlyTrashed()->get(); // Shudhu soft delete kora data
+       return view('employees.softDeleted', compact('employees'));
+   }
+
+
+   // Soft delete korar jonno
+   public function destroy(employee $employee)
+   {
+       $employee->delete(); // Soft delete korbe
+       return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
+   }
+
+   // Restore korar jonno
+   public function restore($id)
+   {
+       $employee = employee::withTrashed()->find($id); // Soft delete kora record khuje ber korbe
+       $employee->restore(); // Restore korbe
+       return redirect()->route('employees.index')->with('success', 'Employee restored successfully.');
+   }
+
+
+   // Permanently delete korar jonno
+   public function forceDelete($id)
+   {
+       $employee = employee::withTrashed()->find($id); // Soft delete kora record khuje ber korbe
+       $employee->forceDelete(); // Permanently delete korbe
+       return redirect()->route('employees.index')->with('success', 'Employee permanently deleted.');
+   }
+
+
+
 }

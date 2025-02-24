@@ -20,4 +20,15 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('employees', EmployeeController::class);
 
+// Soft deleted data dekhar jonno route
+Route::get('/employees/softDeleted', [EmployeeController::class, 'softDeleted'])->name('employees.softDeleted');
+
+// Restore korar jonno route
+Route::post('/employees/{id}/restore', [EmployeeController::class, 'restore'])->name('employees.restore');
+
+// Permanently delete korar jonno route
+Route::delete('/employees/{id}/forceDelete', [EmployeeController::class, 'forceDelete'])->name('employees.forceDelete');
+
+
+
 require __DIR__.'/auth.php';

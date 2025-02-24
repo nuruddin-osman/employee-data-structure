@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class employee extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'employee_id',
@@ -30,14 +31,9 @@ class employee extends Model
         'finger_device_id',
         'attendance_policy',
         'rf_id',
+        'joining_date',
+        'date_of_birth',
         'leave_approver',
-    ];
-
-    protected $dates = ['deleted_at', 'joining_date', 'date_of_birth'];
-
-    protected $casts = [
-        'joining_date' => 'date',
-        'date_of_birth' => 'date',
     ];
 }
 

@@ -33,6 +33,7 @@ return new class extends Migration
             $table->string('attendance_policy')->nullable();
             $table->string('rf_id')->unique()->nullable();
             $table->string('leave_approver')->nullable();
+            $table->softDeletes(); // Add soft delete column (deleted_at)
             $table->timestamps();
         });
     }

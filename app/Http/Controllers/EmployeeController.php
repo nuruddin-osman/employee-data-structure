@@ -63,6 +63,7 @@ class EmployeeController extends Controller
      */
     public function destroy(employee $employee)
     {
-       //
+        $employee->delete();
+        return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
     }
 }

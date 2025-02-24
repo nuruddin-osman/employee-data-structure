@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class employee extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'employee_id',
@@ -31,4 +32,12 @@ class employee extends Model
         'rf_id',
         'leave_approver',
     ];
+
+    protected $dates = ['deleted_at', 'joining_date', 'date_of_birth'];
+
+    protected $casts = [
+        'joining_date' => 'date',
+        'date_of_birth' => 'date',
+    ];
 }
+

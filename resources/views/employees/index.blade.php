@@ -34,6 +34,7 @@
                         <th class="table_head">attendance policy</th>
                         <th class="table_head">rf id</th>
                         <th class="table_head">leave approver</th>
+                        <th class="table_head">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">

@@ -38,7 +38,7 @@ class EmployeeController extends Controller
      */
     public function show(employee $employee)
     {
-        //
+        return view('employees.show', compact('employee'));
     }
 
     /**
@@ -46,7 +46,7 @@ class EmployeeController extends Controller
      */
     public function edit(employee $employee)
     {
-        //
+        return view('employees.edit', compact('employee'));
     }
 
     /**
@@ -54,7 +54,8 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, employee $employee)
     {
-        //
+        $employee->update($request->all());
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
     }
 
     /**
@@ -62,6 +63,6 @@ class EmployeeController extends Controller
      */
     public function destroy(employee $employee)
     {
-        //
+       //
     }
 }

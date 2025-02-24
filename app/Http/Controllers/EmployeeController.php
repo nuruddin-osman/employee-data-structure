@@ -12,7 +12,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $employees = employee::all();
+        return view('employees.index', compact('employees'));
     }
 
     /**
@@ -20,7 +21,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('employees.create');
     }
 
     /**
@@ -28,7 +29,8 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        employee::create($request->all());
+        return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
     }
 
     /**

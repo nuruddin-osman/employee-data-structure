@@ -42,6 +42,7 @@
                         <th class="table_head">attendance policy</th>
                         <th class="table_head">rf id</th>
                         <th class="table_head">leave approver</th>
+                        <th class="table_head">Employee</th>
                         <th class="table_head">Actions</th>
                     </tr>
                 </thead>
@@ -69,6 +70,12 @@
                         <td class="table_data">{{ $employee->attendance_policy }}</td>
                         <td class="table_data">{{ $employee->rf_id }}</td>
                         <td class="table_data">{{ $employee->leave_approver }}</td>
+                        <td class="table_data">
+                            <a href="{{ route('employees.show', $employee->id) }}"
+                                class="inline-flex px-3 py-1.5 text-white bg-blue-500 rounded transition-colors duration-200 hover:bg-blue-600">
+                                 Employee details
+                             </a>
+                        </td>
                         <td class="table_data">
                             <a href="{{ route('employees.edit', $employee->id) }}"
                                class="inline-flex px-3 py-1.5 text-white bg-blue-500 rounded transition-colors duration-200 hover:bg-blue-600">

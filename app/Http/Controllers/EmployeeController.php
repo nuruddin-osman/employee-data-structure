@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\employee;
 use Illuminate\Http\Request;
+use Flasher\Prime\FlasherInterface;
 
 class EmployeeController extends Controller
 {
@@ -26,7 +27,7 @@ class EmployeeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, FlasherInterface $flasher)
     {
         // Validation rules
         $request->validate([
@@ -78,7 +79,15 @@ class EmployeeController extends Controller
         ]);
 
         employee::create($request->all());
-        return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
+
+        flash()
+        ->options([
+            'timeout' => 2000, // 3 seconds
+            'position' => 'top-right',
+        ])
+        ->success('New Employee Added Successfully');
+
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -100,7 +109,7 @@ class EmployeeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, employee $employee)
+    public function update(Request $request, employee $employee, FlasherInterface $flasher)
     {
 
         // Validation rules
@@ -153,7 +162,15 @@ class EmployeeController extends Controller
         ]);
 
         $employee->update($request->all());
-        return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
+
+        flash()
+        ->options([
+            'timeout' => 2000, // 3 seconds
+            'position' => 'top-right',
+        ])
+        ->success('Employee updated successfully.');
+
+        return redirect()->route('employees.index');
     }
 
    // SoftDeleted method: Shudhu soft delete kora data dekhabe
@@ -165,27 +182,51 @@ class EmployeeController extends Controller
 
 
    // Soft delete korar jonno
-   public function destroy(employee $employee)
+   public function destroy(employee $employee, FlasherInterface $flasher)
    {
        $employee->delete(); // Soft delete korbe
-       return redirect()->route('employees.index')->with('success', 'Employee deleted successfully.');
+
+       flash()
+       ->options([
+           'timeout' => 2000, // 3 seconds
+           'position' => 'top-right',
+       ])
+       ->success('Employee deleted successfully. You can restore it later.');
+
+       return redirect()->route('employees.index');
    }
 
    // Restore korar jonno
-   public function restore($id)
+   public function restore($id, FlasherInterface $flasher)
    {
        $employee = employee::withTrashed()->find($id); // Soft delete kora record khuje ber korbe
        $employee->restore(); // Restore korbe
-       return redirect()->route('employees.index')->with('success', 'Employee restored successfully.');
+
+       flash()
+       ->options([
+           'timeout' => 2000, // 3 seconds
+           'position' => 'top-right',
+       ])
+       ->success('Employee restored successfully.');
+
+       return redirect()->route('employees.index');
    }
 
 
    // Permanently delete korar jonno
-   public function forceDelete($id)
+   public function forceDelete($id, FlasherInterface $flasher)
    {
        $employee = employee::withTrashed()->find($id); // Soft delete kora record khuje ber korbe
+
+       flash()
+       ->options([
+           'timeout' => 2000, // 3 seconds
+           'position' => 'top-right',
+       ])
+       ->success('Employee permanently deleted.');
+
        $employee->forceDelete(); // Permanently delete korbe
-       return redirect()->route('employees.index')->with('success', 'Employee permanently deleted.');
+       return redirect()->route('employees.index');
    }
 
 

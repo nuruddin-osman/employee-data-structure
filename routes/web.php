@@ -18,10 +18,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('employees', EmployeeController::class);
-
 // Soft deleted data dekhar jonno route
 Route::get('/employees/softDeleted', [EmployeeController::class, 'softDeleted'])->name('employees.softDeleted');
+
+
+// Employee resource route
+Route::resource('employees', EmployeeController::class);
+
 
 // Restore korar jonno route
 Route::post('/employees/{id}/restore', [EmployeeController::class, 'restore'])->name('employees.restore');

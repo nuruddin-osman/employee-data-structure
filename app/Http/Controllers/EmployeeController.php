@@ -60,7 +60,7 @@ class EmployeeController extends Controller
    // SoftDeleted method: Shudhu soft delete kora data dekhabe
    public function softDeleted()
    {
-       $employees = Employee::onlyTrashed()->get(); // Shudhu soft delete kora data
+       $employees = employee::onlyTrashed()->get(); // Shudhu soft delete kora data
        return view('employees.softDeleted', compact('employees'));
    }
 

@@ -9,7 +9,7 @@
             <a href="{{ route('employees.create') }}" class="px-4 py-2 text-white bg-green-500 rounded-lg transition-colors duration-200 hover:bg-green-600">
                 Add Employee
             </a>
-            <a href="{{ route('employees.softDeleted') }}" class="px-4 py-2 text-white bg-green-500 rounded-lg transition-colors duration-200 hover:bg-green-600">
+            <a href="{{ url('/employees/softDeleted') }}" class="px-4 py-2 text-white bg-green-500 rounded-lg transition-colors duration-200 hover:bg-green-600">
                 view deleted data
             </a>
 

@@ -3,7 +3,12 @@
 @section('content')
 
     <div class="container mx-auto">
-        <h1 class="py-3 text-4xl font-bold text-center text-orange-600">Employee form</h1>
+        <div class="flex justify-between items-center">
+            <h1 class="py-3 text-4xl font-bold text-center text-orange-600">Employee form</h1>
+            <div class="">
+                <a href="{{route("employees.index")}}" class="p-2 text-xl font-bold text-black rounded-md bg-slate-300" >Go to employee</a>
+            </div>
+        </div>
         <form class="p-6 bg-white rounded-lg shadow-md" action="{{ route('employees.store') }}" method="POST">
             @csrf
             <div class="grid grid-cols-1 gap-5 md:grid-cols-3">

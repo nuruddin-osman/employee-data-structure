@@ -1,11 +1,12 @@
 
-
 @extends('layouts.employees')
 
 @section('content')
     <div class="container px-4 py-8 mx-auto">
         <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold text-gray-800">Employees</h1>
+            <a href="{{ url('/') }}" class="px-4 py-2 text-white bg-green-500 rounded-lg transition-colors duration-200 hover:bg-green-600">
+                Go to home
+            </a>
             <a href="{{ route('employees.create') }}" class="px-4 py-2 text-white bg-green-500 rounded-lg transition-colors duration-200 hover:bg-green-600">
                 Add Employee
             </a>
@@ -14,8 +15,9 @@
             </a>
 
         </div>
+        <h1 class="text-2xl font-bold text-gray-800">Employees</h1>
 
-        <div class="overflow-x-auto bg-white rounded-lg shadow">
+        <div class="overflow-x-auto bg-white rounded-lg shadow hover:overflow-x-scroll scroll-smooth">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
@@ -77,7 +79,7 @@
                                 @method('DELETE')
                                 <button type="submit"
                                         class="px-3 py-1.5 text-white bg-red-500 rounded transition-colors duration-200 hover:bg-red-600"
-                                        onclick="return confirm('Are you sure you want to delete this employee?')">
+                                        onclick="return confirm('Are sure!')">
                                     Delete
                                 </button>
                             </form>

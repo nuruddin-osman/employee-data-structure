@@ -3,12 +3,12 @@
 
 @section('content')
     <div class="container px-4 py-8 mx-auto">
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-2xl font-bold text-gray-800">Soft Deleted Employees</h1>
-
-
+        <div class="flex justify-between items-center">
+            <h1 class="py-3 text-4xl font-bold text-center text-orange-600">Deleted Employee form</h1>.
+            <div class="">
+                <a href="{{route("employees.index")}}" class="p-2 text-xl font-bold text-black rounded-md bg-slate-300" >Go to employee</a>
+            </div>
         </div>
-
         <div class="overflow-x-auto bg-white rounded-lg shadow">
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">

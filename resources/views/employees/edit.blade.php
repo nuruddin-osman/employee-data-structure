@@ -3,6 +3,7 @@
 @section('content')
 
     <div class="container mx-auto">
+
         <h1 class="py-3 text-4xl font-bold text-center text-orange-600">Edit Employee</h1>
         <form class="p-6 bg-white rounded-lg shadow-md" action="{{ route('employees.update', $employee->id) }}" method="POST">
             @csrf
